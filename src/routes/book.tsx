@@ -4,7 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 
 export const Route = createFileRoute("/book")({
   validateSearch: (s: Record<string, unknown>): { service?: string } =>
-    typeof s.service === "string" ? { service: s.service.slice(0, 100) } : {},
+    typeof s["service"] === "string" ? { service: (s["service"] as string).slice(0, 100) } : {},
   head: () => ({
     meta: [
       { title: "Book an Appointment — Styled By Whitney" },
