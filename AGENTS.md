@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Site content (services, prices, gallery, reviews, contact) lives in src/lib/site.ts so non-code updates touch one file.
+- Booking/contact forms insert into public.booking_requests (anon insert-only RLS, no public read).
