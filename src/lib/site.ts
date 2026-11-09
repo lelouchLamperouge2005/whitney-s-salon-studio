@@ -9,10 +9,12 @@ export const images = { logo: logo.url, portrait: portrait.url, w1: w1.url, w2: 
 
 // PLACEHOLDER contact details: replace when the real ones are supplied.
 export const contact = {
-  phone: "", // e.g. "+1 555 123 4567"
-  whatsapp: "", // digits only, with country code, e.g. "15551234567"
+  phone: "+1 (803) 446-0941",
+  phoneHref: "tel:+18034460941",
+  whatsapp: "18034460941", // digits only, with country code
   email: "",
-  instagram: "",
+  instagram: "https://instagram.com/style_dbywhitney",
+  instagramHandle: "@style_dbywhitney",
   tiktok: "",
   hours: [] as { day: string; time: string }[],
 };
