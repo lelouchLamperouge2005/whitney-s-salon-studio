@@ -8,7 +8,7 @@ export function ScrollReveal() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const els = Array.from(
       document.querySelectorAll<HTMLElement>("main section > *, main section .grid > *, footer > div > *"),
-    ).filter((el) => !el.dataset.revealed);
+    ).filter((el) => !el.dataset["revealed"]);
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -21,7 +21,7 @@ export function ScrollReveal() {
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
     els.forEach((el, i) => {
-      el.dataset.revealed = "1";
+      el.dataset["revealed"] = "1";
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight) return; // already visible: leave as is
       el.classList.add("reveal");
