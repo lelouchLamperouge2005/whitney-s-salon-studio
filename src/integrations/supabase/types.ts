@@ -14,6 +14,110 @@ export type Database = {
   }
   public: {
     Tables: {
+      appointments: {
+        Row: {
+          appointment_date: string
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          end_time: string
+          hold_expires_at: string | null
+          id: string
+          notes: string | null
+          price_cents: number
+          service_id: string | null
+          service_name: string
+          start_time: string
+          status: Database["public"]["Enums"]["appointment_status"]
+        }
+        Insert: {
+          appointment_date: string
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          end_time: string
+          hold_expires_at?: string | null
+          id?: string
+          notes?: string | null
+          price_cents: number
+          service_id?: string | null
+          service_name: string
+          start_time: string
+          status?: Database["public"]["Enums"]["appointment_status"]
+        }
+        Update: {
+          appointment_date?: string
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string
+          end_time?: string
+          hold_expires_at?: string | null
+          id?: string
+          notes?: string | null
+          price_cents?: number
+          service_id?: string | null
+          service_name?: string
+          start_time?: string
+          status?: Database["public"]["Enums"]["appointment_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      availability_rules: {
+        Row: {
+          break_end: string | null
+          break_start: string | null
+          close_time: string
+          is_open: boolean
+          open_time: string
+          weekday: number
+        }
+        Insert: {
+          break_end?: string | null
+          break_start?: string | null
+          close_time?: string
+          is_open?: boolean
+          open_time?: string
+          weekday: number
+        }
+        Update: {
+          break_end?: string | null
+          break_start?: string | null
+          close_time?: string
+          is_open?: boolean
+          open_time?: string
+          weekday?: number
+        }
+        Relationships: []
+      }
+      blocked_dates: {
+        Row: {
+          blocked_date: string
+          id: string
+          reason: string | null
+        }
+        Insert: {
+          blocked_date: string
+          id?: string
+          reason?: string | null
+        }
+        Update: {
+          blocked_date?: string
+          id?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
       booking_requests: {
         Row: {
           created_at: string
@@ -53,15 +157,131 @@ export type Database = {
         }
         Relationships: []
       }
+      payments: {
+        Row: {
+          amount_cents: number
+          appointment_id: string
+          created_at: string
+          currency: string
+          id: string
+          paypal_capture_id: string | null
+          paypal_order_id: string | null
+          provider: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          appointment_id: string
+          created_at?: string
+          currency?: string
+          id?: string
+          paypal_capture_id?: string | null
+          paypal_order_id?: string | null
+          provider?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          appointment_id?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          paypal_capture_id?: string | null
+          paypal_order_id?: string | null
+          provider?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          active: boolean
+          category: string
+          created_at: string
+          description: string
+          duration_minutes: number
+          id: string
+          image_url: string | null
+          name: string
+          price_cents: number
+          sort_order: number
+        }
+        Insert: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          description?: string
+          duration_minutes: number
+          id?: string
+          image_url?: string | null
+          name: string
+          price_cents: number
+          sort_order?: number
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          description?: string
+          duration_minutes?: number
+          id?: string
+          image_url?: string | null
+          name?: string
+          price_cents?: number
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      appointment_status:
+        | "awaiting_payment"
+        | "confirmed"
+        | "payment_failed"
+        | "cancelled"
+        | "completed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -188,6 +408,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      appointment_status: [
+        "awaiting_payment",
+        "confirmed",
+        "payment_failed",
+        "cancelled",
+        "completed",
+      ],
+    },
   },
 } as const
