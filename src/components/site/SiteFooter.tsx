@@ -25,9 +25,9 @@ export function SiteFooter() {
         <div>
           <h4 className="eyebrow mb-4">Get in touch</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>{contact.phone || "Phone: coming soon"}</li>
-            <li>{contact.email || "Email: coming soon"}</li>
-            {contact.instagram && <li><a href={contact.instagram} className="hover:text-primary">Instagram</a></li>}
+            <li><a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp: {contact.phone}</a></li>
+            <li><a href={contact.phoneHref} className="hover:text-primary">Call: {contact.phone}</a></li>
+            {contact.instagram && <li><a href={contact.instagram} target="_blank" rel="noreferrer" className="hover:text-primary">Instagram {contact.instagramHandle}</a></li>}
             {contact.tiktok && <li><a href={contact.tiktok} className="hover:text-primary">TikTok</a></li>}
             <li>Location shared after booking</li>
           </ul>
