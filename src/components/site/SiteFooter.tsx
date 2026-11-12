@@ -30,6 +30,7 @@ export function SiteFooter() {
             {contact.instagram && <li><a href={contact.instagram} target="_blank" rel="noreferrer" className="hover:text-primary">Instagram {contact.instagramHandle}</a></li>}
             {contact.tiktok && <li><a href={contact.tiktok} className="hover:text-primary">TikTok</a></li>}
             <li>Location shared after booking</li>
+            <li><Link to="/admin" className="text-xs hover:text-primary">Owner login</Link></li>
           </ul>
         </div>
       </div>

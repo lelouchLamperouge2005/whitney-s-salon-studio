@@ -26,7 +26,7 @@ function BookingPage() {
   const { data, refetch } = useSuspenseQuery(q(id));
   const b = data.booking;
   if (!b) return <section className="mx-auto max-w-xl px-5 py-24 text-center"><h1 className="text-4xl">Booking not found</h1><Link to="/book" className="btn-primary mt-6 inline-block">Book an appointment</Link></section>;
-  const [title, text] = label[b.status];
+  const [title, text] = label[b.status] ?? ["Booking", ""];
   const wa = whatsappLink(`Hi Whitney! I'm ${b.customer_name}, about my booking for ${b.service_name} on ${b.appointment_date} at ${fmt12(b.start_time)}.`);
   return (
     <section className="mx-auto max-w-xl px-5 py-24">

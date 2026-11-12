@@ -9,7 +9,7 @@ export function PayPalCheckout({ bookingId, onDone }: { bookingId: string; onDon
   const [err, setErr] = useState<string | null>(null);
   const create = useServerFn(createPaypalOrder);
   const capture = useServerFn(capturePaypalOrder);
-  const clientId = import.meta.env.VITE_LOVABLE_CONNECTOR_PAYPAL_CLIENT_ID as string | undefined;
+  const clientId = import.meta.env['VITE_LOVABLE_CONNECTOR_PAYPAL_CLIENT_ID'] as string | undefined;
 
   useEffect(() => {
     if (!clientId || !ref.current) return;
