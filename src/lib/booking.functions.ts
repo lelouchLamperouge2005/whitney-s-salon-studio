@@ -30,7 +30,7 @@ export const getBookingSetup = createServerFn({ method: "GET" }).handler(async (
     closedWeekdays: (rules ?? []).filter((r) => !r.is_open).map((r) => r.weekday),
     blockedDates: (blocked ?? []).map((b) => b.blocked_date),
     today: salonNow().date,
-    paypalReady: Boolean(process.env.LOVABLE_API_KEY && process.env.PAYPAL_API_KEY),
+    paypalReady: Boolean(process.env['LOVABLE_API_KEY'] && process.env['PAYPAL_API_KEY']),
   };
 });
 
@@ -59,7 +59,7 @@ export const createBooking = createServerFn({ method: "POST" })
     if (!svc) return { error: "That service is no longer available." };
     const slots = await slotsFor(db, data.date, svc.duration_minutes);
     if (!slots.includes(data.time)) return { error: "Sorry, that time was just taken. Please pick another." };
-    const ready = Boolean(process.env.LOVABLE_API_KEY && process.env.PAYPAL_API_KEY);
+    const ready = Boolean(process.env['LOVABLE_API_KEY'] && process.env['PAYPAL_API_KEY']);
     const { data: row, error } = await db.from("appointments").insert({
       service_id: svc.id, service_name: svc.name, price_cents: svc.price_cents, appointment_date: data.date,
       start_time: data.time, end_time: toHHMM(toMin(data.time) + svc.duration_minutes),
@@ -79,7 +79,7 @@ export const getBooking = createServerFn({ method: "POST" })
     const db = await admin();
     await expireHolds(db);
     const { data: a } = await db.from("appointments").select("id,service_name,price_cents,appointment_date,start_time,end_time,customer_name,status,hold_expires_at").eq("id", data.id).maybeSingle();
-    return { booking: a, paypalReady: Boolean(process.env.LOVABLE_API_KEY && process.env.PAYPAL_API_KEY) };
+    return { booking: a, paypalReady: Boolean(process.env['LOVABLE_API_KEY'] && process.env['PAYPAL_API_KEY']) };
   });
 
 export const createPaypalOrder = createServerFn({ method: "POST" })
