@@ -131,5 +131,3 @@ INSERT INTO public.services (name, category, description, price_cents, duration_
 ('Wig Install', 'Wigs', 'Secure, natural-looking wig installation on your own unit.', 6000, 60, 5),
 ('Wig Install & Styling', 'Wigs', 'Installation plus curls, waves or a sleek finish styled to suit you.', 9000, 90, 6),
 ('Wig Styling Only', 'Wigs', 'Refresh a wig you already own with a wash, curl or straight style.', 4000, 60, 7),
-('Classic Manicure', 'Nails', 'Shaping, cuticle care and a polish of your choice.', 2500, 45, 8),
-('Gel Manicure', 'Nails', 'Long-lasting, glossy gel colour that stays chip-free for weeks.', 3500, 60, 9);

@@ -9,7 +9,7 @@ import { ReviewCards } from "@/components/site/ReviewCards";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Styled By Whitney — Braids, Twists, Wigs & Nails" },
+      { title: "Styled By Whitney — Braids, Twists & Wigs " },
       { name: "description", content: "Where beauty meets confidence. Book braids, twists, wig installs and manicures with Whitney." },
       { property: "og:title", content: "Styled By Whitney — Where Beauty Meets Confidence" },
       { property: "og:description", content: "Book braids, twists, wig installs and manicures with Whitney." },

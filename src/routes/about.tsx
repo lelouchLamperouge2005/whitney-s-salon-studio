@@ -29,7 +29,7 @@ function About() {
       </section>
 
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-2">
-        <img src={images.portrait} alt="Portrait of Whitney, founder of Styled By Whitney" className="aspect-[4/5] w-full rounded-3xl object-cover object-top shadow-glow" />
+        <img src="/work-6.jpg" alt="Portrait of Whitney, founder of Styled By Whitney" className="aspect-[4/5] w-full rounded-3xl object-cover object-top shadow-glow" />
         <div>
           <p className="eyebrow">Meet the founder</p>
           <h2 className="mt-3 text-6xl">Whitney</h2>

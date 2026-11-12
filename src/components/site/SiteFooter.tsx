@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <img src={images.logo} alt="Styled By Whitney logo" className="h-20 w-20 rounded-full object-cover" />
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            Braids, twists, wigs and nails — styled with care, creativity and confidence by Whitney.
+            Braids, twists and wigs — styled with care, creativity and confidence by Whitney.
           </p>
           <Link to="/book" className="btn-primary mt-6 inline-block">Book Appointment</Link>
         </div>

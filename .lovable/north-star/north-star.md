@@ -2,8 +2,6 @@
 
 # North star
 
-Clients get their hair or nails done by Whitney.
-
 ## Metric
 
 Booking requests submitted each week
